@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chilli Hub Key Form</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255, 70, 0, .20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(255, 35, 0, .10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #030303 0%,
+            #120504 50%,
+            #030303 100%
+        );
+}
+
+/* =========================
+   BACKGROUND GRID
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 60, 0, .045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 60, 0, .045) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 25%,
+        black 75%,
+        transparent
+    );
+
+    animation: gridMove 12s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(45px);
+    }
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+.glow {
+    position: fixed;
+    width: 430px;
+    height: 430px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 45, 0, .12);
+
+    filter: blur(100px);
+
+    animation: glowPulse 4s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes glowPulse {
+    0%,
+    100% {
+        transform: scale(.85);
+        opacity: .45;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: .9;
+    }
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particle {
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ff4b16;
+
+    box-shadow:
+        0 0 8px #ff3c00,
+        0 0 18px #ff2600;
+
+    opacity: .7;
+
+    animation: floatUp linear infinite;
+
+    pointer-events: none;
+}
+
+.p1 {
+    left: 10%;
+    bottom: -20px;
+    animation-duration: 7s;
+}
+
+.p2 {
+    left: 25%;
+    bottom: -20px;
+    animation-duration: 9s;
+    animation-delay: 2s;
+}
+
+.p3 {
+    left: 50%;
+    bottom: -20px;
+    animation-duration: 6s;
+    animation-delay: 1s;
+}
+
+.p4 {
+    left: 73%;
+    bottom: -20px;
+    animation-duration: 8s;
+    animation-delay: 3s;
+}
+
+.p5 {
+    left: 90%;
+    bottom: -20px;
+    animation-duration: 10s;
+    animation-delay: 1s;
+}
+
+.p6 {
+    left: 40%;
+    bottom: -20px;
+    animation-duration: 11s;
+    animation-delay: 4s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform:
+            translateY(0)
+            scale(.3);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            scale(1.4);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.card {
+    position: relative;
+
+    width: min(450px, 92%);
+
+    padding: 42px 32px 30px;
+
+    border-radius: 30px;
+
+    background: rgba(12, 8, 8, .82);
+
+    border: 1px solid rgba(255, 65, 15, .25);
+
+    backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, .8),
+        0 0 50px rgba(255, 45, 0, .10);
+
+    z-index: 5;
+
+    overflow: hidden;
+}
+
+/* Animated border */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -2px;
+
+    border-radius: 32px;
+
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(255, 45, 0, .9),
+        transparent 25%,
+        rgba(255, 125, 0, .65),
+        transparent 55%
+    );
+
+    animation: borderSpin 6s linear infinite;
+
+    z-index: -2;
+}
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 2px;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 45, 0, .08),
+            transparent 40%
+        ),
+        rgba(10, 7, 7, .97);
+
+    z-index: -1;
+}
+
+@keyframes borderSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   BIG 3D FIRE LOGO
+========================= */
+
+.logo-box {
+    width: 145px;
+    height: 145px;
+
+    margin: 0 auto 24px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1000px;
+
+    transform-style: preserve-3d;
+
+    z-index: 10;
+}
+
+/* Logo background */
+
+.logo-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 135px;
+    height: 135px;
+
+    border-radius: 38px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255, 95, 20, .25),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #3b0903,
+            #180504 55%,
+            #070202
+        );
+
+    border: 1px solid rgba(255, 80, 25, .4);
+
+    box-shadow:
+        inset 5px 5px 16px rgba(255, 255, 255, .08),
+        inset -10px -12px 22px rgba(0, 0, 0, .85),
+        0 12px 35px rgba(0, 0, 0, .65),
+        0 0 40px rgba(255, 50, 0, .25);
+}
+
+/* Extra glow behind flame */
+
+.logo-box::after {
+    content: "";
+
+    position: absolute;
+
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 75, 0, .55),
+            rgba(255, 35, 0, .15) 45%,
+            transparent 72%
+        );
+
+    filter: blur(18px);
+
+    z-index: -1;
+
+    animation: fireGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes fireGlow {
+    0%,
+    100% {
+        transform: scale(.82);
+        opacity: .55;
+    }
+
+    50% {
+        transform: scale(1.18);
+        opacity: 1;
+    }
+}
+
+/* Flame container */
+
+.flame-3d {
+    position: relative;
+
+    width: 88px;
+    height: 112px;
+
+    transform-style: preserve-3d;
+
+    animation: flameFloat 2.8s ease-in-out infinite;
+
+    z-index: 20;
+}
+
+/* 3D extrusion */
+
+.flame-back {
+    position: absolute;
+
+    width: 88px;
+    height: 112px;
+
+    left: 9px;
+    top: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff3500,
+            #a91100 55%,
+            #3b0300
+        );
+
+    clip-path: polygon(
+        50% 0%,
+        67% 22%,
+        64% 40%,
+        91% 61%,
+        81% 82%,
+        64% 96%,
+        50% 100%,
+        36% 96%,
+        19% 82%,
+        9% 61%,
+        36% 40%,
+        33% 22%
+    );
+
+    transform: translateZ(-22px);
+
+    filter:
+        brightness(.5)
+        drop-shadow(
+            10px 13px 0 rgba(45, 2, 0, .9)
+        );
+}
+
+/* Main outer flame */
+
+.flame-body {
+    position: absolute;
+
+    width: 88px;
+    height: 112px;
+
+    left: 0;
+    top: 0;
+
+    background:
+        linear-gradient(
+            155deg,
+            #fff8a5 0%,
+            #ffd21c 14%,
+            #ff8a00 38%,
+            #ff4200 67%,
+            #c80b00 100%
+        );
+
+    clip-path: polygon(
+        50% 0%,
+        67% 22%,
+        64% 40%,
+        91% 61%,
+        81% 82%,
+        64% 96%,
+        50% 100%,
+        36% 96%,
+        19% 82%,
+        9% 61%,
+        36% 40%,
+        33% 22%
+    );
+
+    transform: translateZ(18px);
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(255, 60, 0, .95)
+        )
+        drop-shadow(
+            5px 9px 6px rgba(65, 4, 0, .8)
+        );
+}
+
+/* Inner flame */
+
+.flame-inner {
+    position: absolute;
+
+    width: 48px;
+    height: 68px;
+
+    left: 20px;
+    bottom: 9px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #fffde5,
+            #fff35b 25%,
+            #ffc21a 55%,
+            #ff7100 100%
+        );
+
+    clip-path: polygon(
+        50% 0%,
+        68% 28%,
+        62% 48%,
+        85% 67%,
+        73% 87%,
+        50% 100%,
+        27% 87%,
+        15% 67%,
+        38% 48%,
+        32% 28%
+    );
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(255, 235, 65, .95)
+        );
+}
+
+/* Inner red/orange edge */
+
+.flame-inner::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #fffbd0,
+            #ffe32e,
+            #ff8a00
+        );
+
+    clip-path: inherit;
+}
+
+/* White highlight */
+
+.flame-highlight {
+    position: absolute;
+
+    width: 14px;
+    height: 38px;
+
+    left: 34px;
+    top: 13px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, .98),
+            rgba(255, 255, 255, .08)
+        );
+
+    border-radius:
+        80% 20%
+        70% 30%;
+
+    transform: rotate(17deg);
+
+    filter: blur(.4px);
+}
+
+/* Flame animation */
+
+@keyframes flameFloat {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotateX(2deg)
+            rotateY(-7deg)
+            rotateZ(-2deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            rotateX(-3deg)
+            rotateY(8deg)
+            rotateZ(2deg)
+            scale(1.07);
+    }
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    text-align: center;
+
+    font-size: 34px;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff3510,
+            #ffb300,
+            #fff0a0,
+            #ff3510
+        );
+
+    background-size: 250%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation: titleGradient 3s linear infinite;
+}
+
+@keyframes titleGradient {
+    to {
+        background-position: 250%;
+    }
+}
+
+.subtitle {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
+}
+
+/* =========================
+   KEY INPUT
+========================= */
+
+.key-box {
+    position: relative;
+
+    margin-bottom: 17px;
+}
+
+.key-input {
+    width: 100%;
+
+    height: 58px;
+
+    padding: 0 18px;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(255, 70, 20, .25);
+
+    outline: none;
+
+    color: #fff;
+
+    background:
+        rgba(255, 255, 255, .045);
+
+    font-size: 14px;
+
+    transition: .3s;
+
+    box-shadow:
+        inset 0 0 20px rgba(255, 50, 0, .03);
+}
+
+.key-input:focus {
+    border-color: #ff4b16;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 70, 20, .1),
+        0 0 25px rgba(255, 50, 0, .12);
+}
+
+/* =========================
+   COPY BUTTON
+========================= */
+
+.copy-btn {
+    width: 100%;
+
+    height: 58px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2600,
+            #ff6500,
+            #d71900
+        );
+
+    box-shadow:
+        0 10px 30px rgba(255, 45, 0, .28),
+        inset 0 1px 0 rgba(255, 255, 255, .3);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: .3s;
+}
+
+.copy-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, .38),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    45%,
+    100% {
+        left: 140%;
+    }
+}
+
+.copy-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(255, 45, 0, .42),
+        0 0 25px rgba(255, 50, 0, .22);
+}
+
+.copy-btn:active {
+    transform:
+        translateY(0)
+        scale(.98);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    text-align: center;
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 18px;
+}
+
+.status span {
+    color: #ff572d;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 25px;
+
+    color: #555;
+
+    font-size: 11px;
+}
+
+.footer .dot {
+    color: #ff4a20;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .card {
+        width: 92%;
+
+        padding:
+            35px 22px 25px;
+    }
+
+    .logo-box {
+        width: 135px;
+        height: 135px;
+    }
+
+    .logo-box::before {
+        width: 125px;
+        height: 125px;
+    }
+
+    .title {
+        font-size: 29px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .key-input {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background -->
+<div class="glow"></div>
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+<div class="particle p4"></div>
+<div class="particle p5"></div>
+<div class="particle p6"></div>
+
+
+<!-- Main Card -->
+<div class="card">
+
+    <!-- BIG 3D FIRE LOGO -->
+    <div class="logo-box">
+
+        <div class="flame-3d">
+
+            <div class="flame-back"></div>
+
+            <div class="flame-body">
+
+                <div class="flame-inner"></div>
+
+                <div class="flame-highlight"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Title -->
+    <h1 class="title">
+        Chilli Hub Key Form
+    </h1>
+
+    <p class="subtitle">
+        Enter your key below to continue
+    </p>
+
+
+    <!-- Key -->
+    <div class="key-box">
+
+        <input
+            id="keyInput"
+            class="key-input"
+            type="text"
+            value="ChilliHubKeyLaiwkwksoo - Jsksowoowejejisoe"
+            readonly
+        >
+
+    </div>
+
+
+    <!-- Copy -->
+    <button
+        class="copy-btn"
+        onclick="copyKey()"
+    >
+        Copy Key
+    </button>
+
+
+    <!-- Status -->
+    <div class="status">
+        ● <span>Key System Online</span> · Secure
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <span class="dot">◆</span>
+        Chilli Hub
+        <span class="dot">•</span>
+        Key System
+        <span class="dot">◆</span>
+    </div>
+
+</div>
+
+
+<script>
+
+function copyKey() {
+
+    const input =
+        document.getElementById("keyInput");
+
+    const button =
+        document.querySelector(".copy-btn");
+
+    navigator.clipboard
+        .writeText(input.value)
+        .then(() => {
+
+            const oldText =
+                button.innerText;
+
+            button.innerText =
+                "✓ Key Copied!";
+
+            setTimeout(() => {
+
+                button.innerText =
+                    oldText;
+
+            }, 1800);
+
+        })
+        .catch(() => {
+
+            input.select();
+
+            document.execCommand("copy");
+
+            const oldText =
+                button.innerText;
+
+            button.innerText =
+                "✓ Key Copied!";
+
+            setTimeout(() => {
+
+                button.innerText =
+                    oldText;
+
+            }, 1800);
+
+        });
+}
+
+</script>
+
+</body>
+</html>
